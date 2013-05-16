@@ -16,13 +16,12 @@ import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.platform.ui.web.api.NavigationContext;
 
-
 @Name("oriCustomFiltersBean")
 @Scope(ScopeType.CONVERSATION)
 public class OriCustomFiltersBean {
-	
+
     private static final Log log = LogFactory.getLog(OriCustomFiltersBean.class);
-    
+
     @PrePassivate
     public void prePassivate() {
         log.debug("prePassivate :: ");
@@ -44,12 +43,11 @@ public class OriCustomFiltersBean {
 
     @In(create = true)
     protected transient CoreSession documentManager;
-   
-    
 
     public boolean isInSection() throws ClientException {
-    	DocumentModel currentDocument = navigationContext.getCurrentDocument();
-    	return documentManager.getSuperParentType(currentDocument).equals("Section");
+        DocumentModel currentDocument = navigationContext.getCurrentDocument();
+        return documentManager.getSuperParentType(currentDocument).equals(
+                "Section");
     }
 
 }

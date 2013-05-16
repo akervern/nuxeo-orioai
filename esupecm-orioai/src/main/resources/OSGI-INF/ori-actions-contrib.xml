@@ -13,12 +13,11 @@
       <filter id="ori_in_section_filter">
         <rule grant="false">
           <type>SectionRoot</type>
-          <type>Section</type>	
+          <type>Section</type>
           <!--condition>#{oriCustomFiltersBean.inSection}</condition -->
         </rule>
-      </filter>  
+      </filter>
     </action>
-
 
 
     <!--action id="tab_md_editor"
@@ -32,25 +31,22 @@
       </filter>
     </action-->
 
-    
-    
+
     <action id="INIT_ORIWORKFLOW" link="#{oriManager.initOriWorkflow}"
       enabled="true" label="ori.command.workflow.init" icon="">
       <category>INIT_ORIWORKFLOW</category>
       <!-- filter-id>edit</filter-id>  -->
     </action>
-    
-    
-    
-    
+
+
   </extension>
 
   <extension target="org.nuxeo.ecm.platform.actions.ActionService" point="filters">
-  	<filter id="lock_published_document">
+    <filter id="lock_published_document">
       <rule grant="true">
-          <condition>#{oriManager.canUnpublish}</condition>
-        </rule>
+        <condition>#{oriManager.canUnpublish}</condition>
+      </rule>
     </filter>
-  
+
   </extension>
 </component>

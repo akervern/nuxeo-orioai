@@ -2,7 +2,7 @@
 <ejb-jar version="3.0"
   xmlns="http://java.sun.com/xml/ns/javaee">
 
-   <assembly-descriptor>
+  <assembly-descriptor>
     <interceptor-binding>
       <ejb-name>*</ejb-name>
       <interceptor-class>
@@ -21,8 +21,8 @@
 
   <interceptors>
     <interceptor>
-        <interceptor-class>org.jboss.seam.ejb.SeamInterceptor</interceptor-class>
+      <interceptor-class>org.jboss.seam.ejb.SeamInterceptor</interceptor-class>
     </interceptor>
- </interceptors>
+  </interceptors>
 
 </ejb-jar>

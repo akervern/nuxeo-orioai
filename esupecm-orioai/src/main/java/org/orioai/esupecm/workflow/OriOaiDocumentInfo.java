@@ -7,46 +7,49 @@ import org.apache.commons.logging.LogFactory;
 import org.orioai.esupecm.OriOaiMetadataType;
 
 /**
- * Class gathering informations from Web services about a workflow instance tied to a nuxeo document
- * Includes idp for maintaining autenticated remote session between different actions from nuxeo session
+ * Class gathering informations from Web services about a workflow instance tied
+ * to a nuxeo document Includes idp for maintaining autenticated remote session
+ * between different actions from nuxeo session
+ * 
  * @author François Jannin
- *
+ * 
  */
 public class OriOaiDocumentInfo {
 
-	private static final Log log = LogFactory.getLog(OriOaiDocumentInfo.class);
-	
+    private static final Log log = LogFactory.getLog(OriOaiDocumentInfo.class);
+
     private Long oriId;
-    
+
     private OriOaiMetadataType metadataType;
-    
+
     private List<String> states;
-    
+
     private List<String> informations;
-    
+
     private String idp;
-    
-    private List<EditorInfo>  mdeditorUrls;
-    
+
+    private List<EditorInfo> mdeditorUrls;
+
     private List<ActionInfo> actions;
 
     private String sectionTitle;
-    
+
     private String proxyTitle;
-    
+
     private boolean deletableRelation = false;
-    
-    
-    
-    public OriOaiDocumentInfo(int i, Long oriId, OriOaiMetadataType metadataType, List<String> states) {
+
+    public OriOaiDocumentInfo(int i, Long oriId,
+            OriOaiMetadataType metadataType, List<String> states) {
         this.oriId = oriId;
         this.states = states;
         this.metadataType = metadataType;
         this.idp = null;
         this.mdeditorUrls = null;
     }
-     
-    public OriOaiDocumentInfo(Long oriId, OriOaiMetadataType metadataType, List<String> states, String idp, List<EditorInfo> mdeditorUrls, List<ActionInfo> actions, List<String> informations) {
+
+    public OriOaiDocumentInfo(Long oriId, OriOaiMetadataType metadataType,
+            List<String> states, String idp, List<EditorInfo> mdeditorUrls,
+            List<ActionInfo> actions, List<String> informations) {
         this.oriId = oriId;
         this.states = states;
         this.metadataType = metadataType;
@@ -56,67 +59,67 @@ public class OriOaiDocumentInfo {
         this.informations = informations;
     }
 
-   public Long getOriId() {
-		return oriId;
-	}
+    public Long getOriId() {
+        return oriId;
+    }
 
-	public OriOaiMetadataType getMetadataType() {
-		return metadataType;
-	}
+    public OriOaiMetadataType getMetadataType() {
+        return metadataType;
+    }
 
-	public List<String> getStates() {
-		if (log.isDebugEnabled())
-			log.debug("getStates :: oriId="+oriId+" :: states=" + states);
+    public List<String> getStates() {
+        if (log.isDebugEnabled())
+            log.debug("getStates :: oriId=" + oriId + " :: states=" + states);
         return states;
     }
-	
-	public List<String> getInformations() {
-		return this.informations;
-		
+
+    public List<String> getInformations() {
+        return this.informations;
+
     }
 
-	public String getIdp() {
-		return idp;
-	}
+    public String getIdp() {
+        return idp;
+    }
 
-	public  List<EditorInfo>  getMdeditorUrls() {
-		return mdeditorUrls;
-	}
+    public List<EditorInfo> getMdeditorUrls() {
+        return mdeditorUrls;
+    }
 
-	public String getSectionTitle() {
-		return sectionTitle;
-	}
+    public String getSectionTitle() {
+        return sectionTitle;
+    }
 
-	public void setSectionTitle(String sectionTitle) {
-		this.sectionTitle = sectionTitle;
-	}
+    public void setSectionTitle(String sectionTitle) {
+        this.sectionTitle = sectionTitle;
+    }
 
-	public String getProxyTitle() {
-		return proxyTitle;
-	}
+    public String getProxyTitle() {
+        return proxyTitle;
+    }
 
-	public void setProxyTitle(String proxyTitle) {
-		this.proxyTitle = proxyTitle;
-	}
+    public void setProxyTitle(String proxyTitle) {
+        this.proxyTitle = proxyTitle;
+    }
 
+    public List<ActionInfo> getActions() {
+        return actions;
+    }
 
-	public  List<ActionInfo> getActions() {
-		return actions;
-	}
+    public void setActions(List<ActionInfo> actions) {
+        this.actions = actions;
+    }
 
-	public void setActions(List<ActionInfo> actions) {
-		this.actions = actions;
-	}
+    public boolean isDeletableRelation() {
+        return deletableRelation;
+    }
 
-	public boolean isDeletableRelation() {
-		return deletableRelation;
-	}
+    public void setDeletableRelation(boolean deletableRelation) {
+        this.deletableRelation = deletableRelation;
+    }
 
-	public void setDeletableRelation(boolean deletableRelation) {
-		this.deletableRelation = deletableRelation;
-	}
-
-	public String toString() {
-    	return oriId/*+";"+idp*/+";"+states+";"+metadataType+";"+proxyTitle;
+    public String toString() {
+        return oriId/* +";"+idp */+ ";" + states + ";" + metadataType + ";"
+                + proxyTitle;
     }
 }

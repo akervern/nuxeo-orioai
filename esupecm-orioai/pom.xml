@@ -1,209 +1,209 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<properties>
-		<nuxeo-version>5.4.1</nuxeo-version>
-	</properties>
+    <properties>
+        <nuxeo-version>5.4.1</nuxeo-version>
+    </properties>
 
-	<!-- on se raccroche au nuxeo-platform-publishing comme parent : * nous 
-		evite notamment de preciser les versions des dependances -->
-	<parent>
-		<groupId>org.nuxeo</groupId>
-		<artifactId>nuxeo-ecm</artifactId>
-		<version>5.4.1</version>
-	</parent>
+    <!-- on se raccroche au nuxeo-platform-publishing comme parent : * nous 
+        evite notamment de preciser les versions des dependances -->
+    <parent>
+        <groupId>org.nuxeo</groupId>
+        <artifactId>nuxeo-ecm</artifactId>
+        <version>5.4.1</version>
+    </parent>
 
-  <groupId>org.orioai</groupId>
-  <artifactId>esupecm-orioai</artifactId>
-  <version>2.0-SNAPSHOT</version>
-  <name>ORI-OAI-nuxeo project</name>
-  <description>ORI-OAI-nuxeo project</description>
+    <groupId>org.orioai</groupId>
+    <artifactId>esupecm-orioai</artifactId>
+    <version>2.0-SNAPSHOT</version>
+    <name>ORI-OAI-nuxeo project</name>
+    <description>ORI-OAI-nuxeo project</description>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.orioai</groupId>
-			<artifactId>orioai-commons</artifactId>
-			<version>2.0.0-alpha2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.xfire</groupId>
-			<artifactId>xfire-java5</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.xfire</groupId>
-			<artifactId>xfire-all</artifactId>
-			<version>1.2.6</version>
-		</dependency>
-		<dependency>
-			<groupId>jaxen</groupId>
-			<artifactId>jaxen</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.seam</groupId>
-			<artifactId>jboss-seam</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.faces</groupId>
-			<artifactId>jsf-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.ejb</groupId>
-			<artifactId>ejb-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.nuxeo.ecm.platform</groupId>
-			<artifactId>nuxeo-platform-actions-core</artifactId>
-			<version>${nuxeo-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.nuxeo.ecm.platform</groupId>
-			<artifactId>nuxeo-platform-ui-web</artifactId>
-			<version>${nuxeo-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.nuxeo.ecm.platform</groupId>
-			<artifactId>nuxeo-platform-versioning-api</artifactId>
-			<version>${nuxeo-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.nuxeo.ecm.platform</groupId>
-			<artifactId>nuxeo-platform-webapp-base</artifactId>
-			<version>${nuxeo-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.nuxeo.ecm.platform</groupId>
-			<artifactId>nuxeo-platform-webapp-core</artifactId>
-			<version>${nuxeo-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.nuxeo.ecm.platform</groupId>
-			<artifactId>nuxeo-platform-relations-api</artifactId>
-			<version>${nuxeo-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.nuxeo.ecm.platform</groupId>
-			<artifactId>nuxeo-platform-relations-web</artifactId>
-			<version>${nuxeo-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.nuxeo.ecm.core</groupId>
-			<artifactId>nuxeo-core-storage-sql-test</artifactId>
-			<version>${nuxeo-version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>xfire</groupId>
-			<artifactId>wsdl4j</artifactId>
-			<version>1.5.2</version>
-			<type>jar</type>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1</version>
-			<scope>compile</scope>
-		</dependency>
-    
-    
-		<dependency>
-			<groupId>de.schlichtherle</groupId>
-			<artifactId>truezip</artifactId>
-			<version>6.8.4</version>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.orioai</groupId>
+            <artifactId>orioai-commons</artifactId>
+            <version>2.0.0-alpha2-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.xfire</groupId>
+            <artifactId>xfire-java5</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.xfire</groupId>
+            <artifactId>xfire-all</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.seam</groupId>
+            <artifactId>jboss-seam</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.ejb</groupId>
+            <artifactId>ejb-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-actions-core</artifactId>
+            <version>${nuxeo-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-ui-web</artifactId>
+            <version>${nuxeo-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-versioning-api</artifactId>
+            <version>${nuxeo-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-webapp-base</artifactId>
+            <version>${nuxeo-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-webapp-core</artifactId>
+            <version>${nuxeo-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-relations-api</artifactId>
+            <version>${nuxeo-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-relations-web</artifactId>
+            <version>${nuxeo-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.core</groupId>
+            <artifactId>nuxeo-core-storage-sql-test</artifactId>
+            <version>${nuxeo-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>xfire</groupId>
+            <artifactId>wsdl4j</artifactId>
+            <version>1.5.2</version>
+            <type>jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1</version>
+            <scope>compile</scope>
+        </dependency>
 
-	<repositories>
-		<!-- Esup portail repository -->
-		<repository>
-			<id>esup</id>
-			<name>esup-snapshots</name>
-			<url>https://mvn.esup-portail.org/content/repositories/snapshots</url>
-			<releases>
+
+        <dependency>
+            <groupId>de.schlichtherle</groupId>
+            <artifactId>truezip</artifactId>
+            <version>6.8.4</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <!-- Esup portail repository -->
+        <repository>
+            <id>esup</id>
+            <name>esup-snapshots</name>
+            <url>https://mvn.esup-portail.org/content/repositories/snapshots</url>
+            <releases>
                 <enabled>false</enabled>
             </releases>
-			<snapshots>
+            <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-		</repository>
-		<repository>
-			<id>esup-releases</id>
-			<name>esup-portail</name>
-			<url>https://mvn.esup-portail.org/content/repositories/releases</url>
-			<releases>
+        </repository>
+        <repository>
+            <id>esup-releases</id>
+            <name>esup-portail</name>
+            <url>https://mvn.esup-portail.org/content/repositories/releases</url>
+            <releases>
                 <enabled>true</enabled>
             </releases>
-			<snapshots>
+            <snapshots>
                 <enabled>false</enabled>
             </snapshots>
-		</repository>
-		<repository>
-			<id>esup-thirdparty</id>
-			<name>esup-portail</name>
-			<url>https://mvn.esup-portail.org/content/repositories/thirdparty</url>
-		</repository>
-		<!-- prime repository -->
-		<repository>
-			<id>prime-repo</id>
-			<name>Prime Technology Maven Repository</name>
-			<url>http://repository.prime.com.tr</url>
-			<layout>default</layout>
-		</repository>
-		<repository>
-			<id>public</id>
-			<url>http://maven.nuxeo.org/public</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
-	</repositories>
+        </repository>
+        <repository>
+            <id>esup-thirdparty</id>
+            <name>esup-portail</name>
+            <url>https://mvn.esup-portail.org/content/repositories/thirdparty</url>
+        </repository>
+        <!-- prime repository -->
+        <repository>
+            <id>prime-repo</id>
+            <name>Prime Technology Maven Repository</name>
+            <url>http://repository.prime.com.tr</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>public</id>
+            <url>http://maven.nuxeo.org/public</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifestFile>
-							src/main/resources/META-INF/MANIFEST.MF
-	    				</manifestFile>
-					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<!--executable>/usr/share/java/jdk/java1.6/bin/javac</executable-->
-					<source>1.5</source>
-					<target>1.5</target>
-					<excludes>
-						<exclude>**/*Toto*.java</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-			<!-- Vincent : add XFIRE dependancies -->
-			<!-- TODO : Vérifier la nécessité en nuxeo 5.4.1 -->
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId> 
-				<executions> <execution> <id>copy-installed</id> <phase>process-resources</phase> 
-				<goals> <goal>copy</goal> </goals> <configuration> <artifactItems> <artifactItem> 
-				<groupId>org.codehaus.xfire</groupId> <artifactId>xfire-java5</artifactId> 
-				<version>1.2.6</version> </artifactItem> <artifactItem> <groupId>org.codehaus.xfire</groupId> 
-				<artifactId>xfire-all</artifactId> <version>1.2.6</version> </artifactItem> 
-				<artifactItem> <groupId>commons-httpclient</groupId> <artifactId>commons-httpclient</artifactId> 
-				<version>3.1</version> </artifactItem> <artifactItem> <groupId>wsdl4j</groupId> 
-				<artifactId>wsdl4j</artifactId> <version>1.5.2</version> </artifactItem> 
-				</artifactItems> <outputDirectory>${project.build.outputDirectory}/lib</outputDirectory> 
-				</configuration> </execution> </executions> </plugin> -->
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestFile>
+                            src/main/resources/META-INF/MANIFEST.MF
+                        </manifestFile>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <!--executable>/usr/share/java/jdk/java1.6/bin/javac</executable-->
+                <source>1.5</source>
+                <target>1.5</target>
+                <excludes>
+                    <exclude>**/*Toto*.java</exclude>
+                </excludes>
+            </configuration>
+        </plugin>
+        <!-- Vincent : add XFIRE dependancies -->
+        <!-- TODO : Vérifier la nécessité en nuxeo 5.4.1 -->
+        <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId> 
+                <executions> <execution> <id>copy-installed</id> <phase>process-resources</phase> 
+                <goals> <goal>copy</goal> </goals> <configuration> <artifactItems> <artifactItem> 
+                <groupId>org.codehaus.xfire</groupId> <artifactId>xfire-java5</artifactId> 
+                <version>1.2.6</version> </artifactItem> <artifactItem> <groupId>org.codehaus.xfire</groupId> 
+                <artifactId>xfire-all</artifactId> <version>1.2.6</version> </artifactItem> 
+                <artifactItem> <groupId>commons-httpclient</groupId> <artifactId>commons-httpclient</artifactId> 
+                <version>3.1</version> </artifactItem> <artifactItem> <groupId>wsdl4j</groupId> 
+                <artifactId>wsdl4j</artifactId> <version>1.5.2</version> </artifactItem> 
+                </artifactItems> <outputDirectory>${project.build.outputDirectory}/lib</outputDirectory> 
+                </configuration> </execution> </executions> </plugin> -->
+        </plugins>
+    </build>
 
 </project>
