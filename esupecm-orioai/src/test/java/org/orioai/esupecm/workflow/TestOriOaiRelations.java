@@ -1,6 +1,7 @@
 package org.orioai.esupecm.workflow;
 
 import org.jboss.seam.annotations.In;
+import org.junit.Test;
 import org.orioai.esupecm.relations.OriOaiRelationActionsBean;
 
 public class TestOriOaiRelations extends TestAbstractDocument {
@@ -14,6 +15,7 @@ public class TestOriOaiRelations extends TestAbstractDocument {
         // referencingManager = Framework.get();
     }
 
+    @Test
     public void testCreateRelation() throws Exception {
 
         // assertNotNull(referencingManager);

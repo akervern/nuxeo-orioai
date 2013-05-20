@@ -1,5 +1,8 @@
 package org.orioai.esupecm.workflow;
 
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Test;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.runtime.api.Framework;
 import org.orioai.esupecm.nuxeo2xml.service.OriOaiNuxeo2XmlService;
@@ -14,6 +17,7 @@ public class TestOriOaiNuxeo2XmlService extends TestAbstractDocument {
         service = Framework.getService(OriOaiNuxeo2XmlService.class);
     }
 
+    @Test
     public void testServiceRegistration() throws Exception {
         assertNotNull(service);
         // Map<String, URL> xslMap = null;
@@ -22,6 +26,7 @@ public class TestOriOaiNuxeo2XmlService extends TestAbstractDocument {
         // assertFalse("xslMap is empty ! :-(", xslMap.isEmpty());
     }
 
+    @Test
     public void testDocToXml() throws Exception {
         DocumentModel doc = coreSession.getDocument(createSampleFile());
         // service.docToXml(coreSession, doc, "document");

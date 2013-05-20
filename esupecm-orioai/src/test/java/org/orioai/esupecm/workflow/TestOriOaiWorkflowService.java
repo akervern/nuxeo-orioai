@@ -1,5 +1,8 @@
 package org.orioai.esupecm.workflow;
 
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Test;
 import org.nuxeo.runtime.api.Framework;
 import org.nuxeo.runtime.test.NXRuntimeTestCase;
 import org.orioai.esupecm.workflow.service.OriOaiWorkflowService;
@@ -20,10 +23,12 @@ public class TestOriOaiWorkflowService extends NXRuntimeTestCase {
         service = Framework.getService(OriOaiWorkflowService.class);
     }
 
+    @Test
     public void testServiceRegistration() throws Exception {
         assertNotNull(service);
     }
 
+    @Test
     public void testGetMetadataTypes() throws Exception {
         // List<OriOaiMetadataType> metadataTypes =
         // service.getMetadataTypes("admin");

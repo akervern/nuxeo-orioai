@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.nuxeo</groupId>
+        <artifactId>nuxeo-addons-parent</artifactId>
+        <version>5.6</version>
+    </parent>
+
+    <groupId>org.orioai</groupId>
+    <artifactId>nuxeo-supeduc-parent</artifactId>
+    <version>2.0-SNAPSHOT</version>
+    <name>SupEduc Nuxeo project</name>
+    <packaging>pom</packaging>
+
+    <properties>
+      <nuxeo.version>5.6</nuxeo.version>
+      <orioai.commons.version>2.0.0-alpha2-SNAPSHOT</orioai.commons.version>
+      <xfire.version>1.2.6</xfire.version>
+      <wsdl4j.version>1.5.2</wsdl4j.version>
+      <truezip.version>6.8.4</truezip.version>
+  </properties>
+
+  <modules>
+      <module>esupecm-orioai</module>
+  </modules>
+
+  <dependencyManagement>
+      <dependencies>
+        <dependency>
+            <groupId>org.orioai</groupId>
+            <artifactId>orioai-commons</artifactId>
+            <version>${orioai.commons.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.xfire</groupId>
+            <artifactId>xfire-all</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>de.schlichtherle</groupId>
+            <artifactId>truezip</artifactId>
+            <version>6.8.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>xfire</groupId>
+            <artifactId>wsdl4j</artifactId>
+            <version>1.5.2</version>
+            <type>jar</type>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+<repositories>
+    <!-- Esup portail repository -->
+    <repository>
+        <id>esup</id>
+        <name>esup-snapshots</name>
+        <url>https://mvn.esup-portail.org/content/repositories/snapshots</url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+    </repository>
+    <repository>
+        <id>esup-releases</id>
+        <name>esup-portail</name>
+        <url>https://mvn.esup-portail.org/content/repositories/releases</url>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+    <repository>
+        <id>esup-thirdparty</id>
+        <name>esup-portail</name>
+        <url>https://mvn.esup-portail.org/content/repositories/thirdparty</url>
+    </repository>
+
+    <!-- prime repository -->
+    <repository>
+        <id>prime-repo</id>
+        <name>Prime Technology Maven Repository</name>
+        <url>http://repository.prime.com.tr</url>
+        <layout>default</layout>
+    </repository>
+
+    <!-- Nuxeo repository -->
+    <repository>
+        <id>public</id>
+        <url>http://maven.nuxeo.org/nexus/content/groups/public</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+    </repository>
+</repositories>
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+                <archive>
+                    <manifestFile>
+                        src/main/resources/META-INF/MANIFEST.MF
+                    </manifestFile>
+                </archive>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <!--executable>/usr/share/java/jdk/java1.6/bin/javac</executable-->
+                <source>1.6</source>
+                <target>1.6</target>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
+</project>
