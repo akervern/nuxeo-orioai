@@ -1,22 +1,26 @@
 package org.orioai.esupecm.workflow;
+import java.util.List;
 
-import static org.junit.Assert.assertNotNull;
-
+import org.junit.Ignore;
 import org.junit.Test;
 import org.nuxeo.runtime.api.Framework;
 import org.nuxeo.runtime.test.NXRuntimeTestCase;
+import org.orioai.esupecm.OriOaiMetadataType;
 import org.orioai.esupecm.workflow.service.OriOaiWorkflowService;
+
+import static org.junit.Assert.assertNotNull;
+
 
 public class TestOriOaiWorkflowService extends NXRuntimeTestCase {
 
-    private OriOaiWorkflowService service;
-
+	private OriOaiWorkflowService service;
+	 
     private static final String OSGI_BUNDLE_NAME = "org.orioai.nuxeo.workflow";
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
-
+        
         // deployment of the whole ori-oai-nuxeo-project bundle
         deployBundle(OSGI_BUNDLE_NAME);
 
@@ -29,11 +33,11 @@ public class TestOriOaiWorkflowService extends NXRuntimeTestCase {
     }
 
     @Test
-    public void testGetMetadataTypes() throws Exception {
-        // List<OriOaiMetadataType> metadataTypes =
-        // service.getMetadataTypes("admin");
-        // assertNotNull("metadataTypes obtained from OriOaiWorkflowService is null ??",
-        // metadataTypes);
+    @Ignore
+    public void testGetMetadataTypes() throws Exception {     
+    	List<OriOaiMetadataType> metadataTypes = service.getMetadataTypes("admin");
+        assertNotNull("metadataTypes obtained from OriOaiWorkflowService is null ??", metadataTypes);
     }
 
 }
+

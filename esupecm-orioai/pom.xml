@@ -1,92 +1,197 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.orioai</groupId>
-        <artifactId>nuxeo-supeduc-parent</artifactId>
-        <version>2.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
+  <parent>
+    <groupId>org.orioai</groupId>
+    <artifactId>nuxeo-supeduc-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
 
-    <artifactId>esupecm-orioai</artifactId>
-    <version>2.0-SNAPSHOT</version>
-    <name>ORI-OAI-nuxeo project</name>
-    <description>ORI-OAI-nuxeo project</description>
+  <artifactId>esupecm-orioai</artifactId>
+  <version>1.7.0</version>
+  <name>ORI-OAI-nuxeo project</name>
+  <description>ORI-OAI-nuxeo project</description>
 
-    <dependencies>
+  <dependencies>
+
+    <dependency>
+      <groupId>org.orioai</groupId>
+      <artifactId>org.orioai.commons</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.codehaus.xfire</groupId>
+      <artifactId>xfire-all</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>jaxen</groupId>
+      <artifactId>jaxen</artifactId>
+    </dependency>
+
+    <!-- dependances copiees directement depuis nuxeo-features/nuxeo-platform-publishing/nuxeo-platform-publishing-web/pom.xml pris en exemple -->
+    <dependency>
+      <groupId>org.nuxeo.ecm.core</groupId>
+      <artifactId>nuxeo-core-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.core</groupId>
+      <artifactId>nuxeo-core-event</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.core</groupId>
+      <artifactId>nuxeo-core-schema</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-actions-core</artifactId>
+    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.nuxeo.ecm.platform</groupId>-->
+      <!--<artifactId>nuxeo-platform-publishing-api</artifactId>-->
+    <!--</dependency>-->
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-search-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-ui-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-webapp-base</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-versioning-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-annotations</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.faces</groupId>
+      <artifactId>jsf-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.seam</groupId>
+      <artifactId>jboss-seam</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.ejb</groupId>
+      <artifactId>ejb-api</artifactId>
+    </dependency>
+
+
+    <!-- test scope cf ./nuxeo-features/nuxeo-platform-wiki/nuxeo-platform-wiki-jsf/pom.xml -->
+    <!--<dependency>-->
+      <!--<groupId>org.nuxeo.ecm.core</groupId>-->
+      <!--<artifactId>nuxeo-core-jcr-connector-test</artifactId>-->
+    <!--</dependency>-->
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-content-template-manager</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.runtime</groupId>
+      <artifactId>nuxeo-runtime-test</artifactId>
+    </dependency>
+
+
+    <!-- dependances ajoutees par nous meme (ori-oai / esup) : toutes ne sont peut-etre pas utiles -->
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-relations-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-relations-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-webapp-core</artifactId>
+    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.nuxeo.ecm.platform</groupId>-->
+      <!--<artifactId>nuxeo-platform-publishing-web</artifactId>-->
+      <!--<scope>provided</scope>-->
+    <!--</dependency>-->
+
+    <!--<dependency>-->
+      <!--<groupId>jboss</groupId>-->
+      <!--<artifactId>jboss-remoting</artifactId>-->
+    <!--</dependency>-->
+
+    <!--
         <dependency>
-            <groupId>org.orioai</groupId>
-            <artifactId>orioai-commons</artifactId>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate</artifactId>
+          <scope>provided</scope>
         </dependency>
+
         <dependency>
-            <groupId>org.codehaus.xfire</groupId>
-            <artifactId>xfire-all</artifactId>
+          <groupId>commons-collections</groupId>
+          <artifactId>commons-collections</artifactId>
+          <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>jaxen</groupId>
-            <artifactId>jaxen</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.seam</groupId>
-            <artifactId>jboss-seam</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.faces</groupId>
-            <artifactId>jsf-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.ejb</groupId>
-            <artifactId>ejb-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.platform</groupId>
-            <artifactId>nuxeo-platform-actions-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.platform</groupId>
-            <artifactId>nuxeo-platform-ui-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.platform</groupId>
-            <artifactId>nuxeo-platform-versioning-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.platform</groupId>
-            <artifactId>nuxeo-platform-webapp-base</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.platform</groupId>
-            <artifactId>nuxeo-platform-webapp-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.platform</groupId>
-            <artifactId>nuxeo-platform-relations-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.platform</groupId>
-            <artifactId>nuxeo-platform-relations-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.nuxeo.ecm.core</groupId>
-            <artifactId>nuxeo-core-storage-sql-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>xfire</groupId>
-            <artifactId>wsdl4j</artifactId>
-            <type>jar</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>de.schlichtherle</groupId>
-            <artifactId>truezip</artifactId>
-        </dependency>
-    </dependencies>
+    -->
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+    </dependency>
+
+    <!--<dependency>-->
+    <!--<groupId>net.java.dev.stax-utils</groupId>-->
+    <!--<artifactId>stax-utils</artifactId>-->
+    <!--<version>20040917</version>-->
+    <!--</dependency>-->
+
+
+    <dependency>
+      <groupId>de.schlichtherle</groupId>
+      <artifactId>truezip</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.core</groupId>
+      <artifactId>nuxeo-core-storage-sql-test</artifactId>
+    </dependency>
+
+
+  </dependencies>
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestFile>
+              src/main/resources/META-INF/MANIFEST.MF
+            </manifestFile>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+          <excludes>
+            <exclude>**/*Toto*.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+
+
+    </plugins>
+  </build>
+
 </project>

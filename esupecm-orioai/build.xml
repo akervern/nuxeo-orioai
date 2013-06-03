@@ -21,7 +21,6 @@
 
   <property name="build.dir" value="${basedir}/build/ori-oai-nuxeo/target" />
   <property name="deploy.dir.jboss" value="${jboss.dir}/server/default/deploy/nuxeo.ear/plugins" />
-  <property name="deployed.dir.jboss" value="${jboss.dir}/server/default/deploy/nuxeo.ear/plugins" />
   
 	<property name="deploy.dir.tomcat" value="${tomcat.dir}/templates/custom/plugins" />
 	<property name="deployed.dir.tomcat" value="${tomcat.dir}/nxserver/plugins" />
@@ -159,7 +158,6 @@
 		<equals arg1="${tomcat.dir}" arg2="[PATH_TOMCAT_NUXEO]" />
 		<then>
 			<property name="deploy.dir" value="${deploy.dir.jboss}" />
-			<property name="deployed.dir" value="${deployed.dir.jboss}" />
 			<property name="deploy.lib" value="" />
 		</then>
 		<else>
@@ -180,6 +178,9 @@
 	</target>
 	
 	
+	<property name="maven.version" value="2.2.1" />
+	<property name="maven.bin" value="${utils.dir}/apache-maven-${maven.version}/bin" />
+
 	<!-- ==================== depends-maven Target =================================== -->
 		<target name="install" description="Build">
 		<artifact:mvn pom="${basedir}/pom.xml" mavenHome="${maven.dir}" fork="true">
@@ -190,21 +191,6 @@
 	</target>
 
   <target name="copy" description="Copy files to JBoss">
-  	
-  	<if>
-		<equals arg1="${tomcat.dir}" arg2="[PATH_TOMCAT_NUXEO]" />
-		<then>
-			<property name="deploy.dir" value="${deploy.dir.jboss}" />
-			<property name="deployed.dir" value="${deployed.dir.jboss}" />
-			<property name="deploy.lib" value="" />
-		</then>
-		<else>
-			<property name="deploy.dir" value="${deploy.dir.tomcat}" />
-			<property name="deployed.dir" value="${deployed.dir.tomcat}" />
-			<property name="deploy.lib" value="${deploy.lib.tomcat}" />
-		</else>
-	</if>
-  	
   	<!-- delete old versions of the project -->
   	<delete>
       <fileset file="${deploy.dir}/${name}-*.jar" />

@@ -1,5 +1,7 @@
 package org.orioai.esupecm.relations;
 
+import static org.jboss.seam.ScopeType.CONVERSATION;
+
 import java.io.Serializable;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -45,9 +47,9 @@ import org.nuxeo.ecm.platform.relations.api.impl.QNameResourceImpl;
 import org.nuxeo.ecm.platform.relations.api.impl.RelationDate;
 import org.nuxeo.ecm.platform.relations.api.impl.ResourceImpl;
 import org.nuxeo.ecm.platform.relations.api.impl.StatementImpl;
-import org.nuxeo.ecm.platform.relations.api.util.RelationConstants;
 import org.nuxeo.ecm.platform.relations.web.NodeInfo;
 import org.nuxeo.ecm.platform.relations.web.NodeInfoImpl;
+import org.nuxeo.ecm.platform.relations.api.util.RelationConstants;
 import org.nuxeo.ecm.platform.relations.web.StatementInfo;
 import org.nuxeo.ecm.platform.relations.web.StatementInfoComparator;
 import org.nuxeo.ecm.platform.relations.web.StatementInfoImpl;
@@ -58,25 +60,22 @@ import org.nuxeo.ecm.platform.ui.web.invalidations.DocumentContextBoundActionBea
 import org.nuxeo.ecm.webapp.helpers.ResourcesAccessor;
 import org.nuxeo.runtime.api.Framework;
 
-import static org.jboss.seam.ScopeType.CONVERSATION;
-
 /**
- * Copy of @see
- * org.nuxeo.ecm.platform.relations.web.listener.ejb.RelationActionsBean
- * MODIFIED FOR ORIOAI_nuxeo : Light adaptations : addStatement and
- * getOutgoingStatementsInfo with a Document as parameter (because original
- * implementation use currentDoc)
+ *Copy of @see org.nuxeo.ecm.platform.relations.web.listener.ejb.RelationActionsBean
+ * MODIFIED FOR ORIOAI_nuxeo :
+ * Light adaptations : addStatement and getOutgoingStatementsInfo with a Document as parameter
+ * (because original implementation use currentDoc)
  * 
- * Seam component that manages statements involving current document as well as
+ *  Seam component that manages statements involving current document as well as
  * creation, edition and deletion of statements involving current document.
  * <p>
  * Current document is the subject of the relation. The predicate is resolved
  * thanks to a list of predicates URIs. The object is resolved using a type
  * (literal, resource, qname resource), an optional namespace (for qname
  * resources) and a value.
- * 
+ *
  * @author <a href="mailto:at@nuxeo.com">Anahide Tchertchian</a>
- * 
+ *
  */
 @Name("customRelationActions")
 @Scope(CONVERSATION)
@@ -226,33 +225,31 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
         return incomingStatementsInfo;
     }
 
-    // MODIFORI
-    public List<StatementInfo> getOutgoingStatementsInfo()
-            throws ClientException {
-        DocumentModel currentDoc = navigationContext.getCurrentDocument();
-        return getOutgoingStatementsInfo(currentDoc);
-    }
-
-    /**
-     * Return outgoing relations for a given DocumentModel Same as
-     * super.getOutgoingStatementsInfo(), except for document argument (@see
-     * org.nuxeo.ecm.platform.relations.web.listener.ejb.RelationActionsBean::
-     * getOutgoingStatementsInfo())
-     * 
-     * @param currentDoc
-     * @return
-     * @throws ClientException
-     */
-    public List<StatementInfo> getOutgoingStatementsInfo(
-            DocumentModel currentDoc) throws ClientException {
-
-        if (log.isDebugEnabled())
-            log.debug("getOutgoingStatementsInfo :: currentDoc=" + currentDoc);
-
+    //MODIFORI
+    public List<StatementInfo> getOutgoingStatementsInfo() throws ClientException {
+   	 DocumentModel currentDoc = navigationContext.getCurrentDocument();
+   	 return getOutgoingStatementsInfo(currentDoc);
+   }
+   
+   /**
+	 * Return outgoing relations for a given DocumentModel
+	 * Same as super.getOutgoingStatementsInfo(), except for document argument
+	 * (@see org.nuxeo.ecm.platform.relations.web.listener.ejb.RelationActionsBean::getOutgoingStatementsInfo())
+	 * @param currentDoc
+	 * @return
+	 * @throws ClientException
+	 */
+	public List<StatementInfo> getOutgoingStatementsInfo(DocumentModel currentDoc) throws ClientException {
+		
+		if (log.isDebugEnabled())
+			log.debug("getOutgoingStatementsInfo :: currentDoc="+currentDoc);
+   
+		
+		
         if (outgoingStatementsInfo != null) {
             return outgoingStatementsInfo;
         }
-
+       
         Resource docResource = getDocumentResource(currentDoc);
         if (docResource == null) {
             outgoingStatements = Collections.emptyList();
@@ -273,6 +270,10 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
         }
         return outgoingStatementsInfo;
     }
+	
+	
+	
+	
 
     public void resetStatements() {
         incomingStatements = null;
@@ -363,13 +364,13 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
         }
     }
 
-    // MODIFORI
+    //MODIFORI
     public String addStatement() throws ClientException {
-        DocumentModel currentDoc = navigationContext.getCurrentDocument();
-        return addStatement(currentDoc);
+    	DocumentModel currentDoc = navigationContext.getCurrentDocument();
+    	return addStatement(currentDoc);
     }
-
-    // MODIFORI
+    
+    //MODIFORI
     public String addStatement(DocumentModel currentDoc) throws ClientException {
         Resource documentResource = getDocumentResource(currentDoc);
         if (documentResource == null) {
@@ -394,10 +395,10 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
         }
 
         // if outgoing statement is null
-        if (outgoingStatements == null) {
-            getOutgoingStatementsInfo(currentDoc);
+        if (outgoingStatements==null) {
+        	getOutgoingStatementsInfo(currentDoc);
         }
-
+        
         // create new statement
         Statement stmt = new StatementImpl(documentResource, predicate, object);
         if (!outgoingStatements.contains(stmt)) {
@@ -455,16 +456,11 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
             // make sure statements will be recomputed
             resetStatements();
 
-            // comment� pour ne pas affich� Relation cr��e qui ne parle pas �
-            // l'utilisateur
-            // facesMessages.add(FacesMessage.SEVERITY_INFO,
-            // resourcesAccessor.getMessages().get("label.relation.created"));
+            // comment pour ne pas affiché Relation créée qui ne parle pas à l'utilisateur
+            //facesMessages.add(FacesMessage.SEVERITY_INFO, resourcesAccessor.getMessages().get("label.relation.created"));
             resetCreateFormValues();
         } else {
-            facesMessages.add(
-                    FacesMessage.SEVERITY_WARN,
-                    resourcesAccessor.getMessages().get(
-                            "label.relation.already.exists"));
+            facesMessages.add(FacesMessage.SEVERITY_WARN, resourcesAccessor.getMessages().get("label.relation.already.exists"));
         }
         return "document_relations";
     }
@@ -506,7 +502,7 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
             Statement stmt = stmtInfo.getStatement();
             // notifications
             Map<String, Serializable> options = new HashMap<String, Serializable>();
-            // DocumentModel source = getCurrentDocument();
+            //DocumentModel source = getCurrentDocument();
             String currentLifeCycleState = source.getCurrentLifeCycleState();
             options.put(CoreEventConstants.DOC_LIFE_CYCLE,
                     currentLifeCycleState);
@@ -532,18 +528,19 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
             // make sure statements will be recomputed
             resetStatements();
 
-            facesMessages.add(
-                    FacesMessage.SEVERITY_INFO,
+            facesMessages.add(FacesMessage.SEVERITY_INFO,
                     resourcesAccessor.getMessages().get(
                             "label.relation.deleted"));
         }
         return "document_relations";
     }
-
-    public String deleteStatement(StatementInfo stmtInfo)
-            throws ClientException {
-        return deleteStatement(stmtInfo, getCurrentDocument());
+    
+    
+    public String deleteStatement(StatementInfo stmtInfo) throws ClientException {
+    	return deleteStatement(stmtInfo, getCurrentDocument());
     }
+    
+    
 
     public String getSearchKeywords() {
         return searchKeywords;
@@ -554,10 +551,9 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
     }
 
     public String searchDocuments() throws ClientException {
-        if (log.isDebugEnabled())
-            log.debug("Making call to get documents list for keywords: "
-                    + searchKeywords);
-
+    	if (log.isDebugEnabled())
+			log.debug("Making call to get documents list for keywords: " + searchKeywords);
+    	
         // reset existing search results
         resultDocuments = null;
         List<String> constraints = new ArrayList<String>();
@@ -585,17 +581,16 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
         // search keywords
         String query = String.format("SELECT * FROM Document WHERE %s",
                 StringUtils.join(constraints.toArray(), " AND "));
-
+        
         if (log.isDebugEnabled())
-            log.debug("query: " + query);
-
+			log.debug("query: " + query);
+        
         resultDocuments = documentManager.query(query, 100);
         hasSearchResults = !resultDocuments.isEmpty();
-
+        
         if (log.isDebugEnabled())
-            log.debug("query result contains: " + resultDocuments.size()
-                    + " docs.");
-
+        	log.debug("query result contains: " + resultDocuments.size() + " docs.");
+        
         return "create_relation_search_document";
     }
 
@@ -637,3 +632,8 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
     }
 
 }
+
+
+
+
+
