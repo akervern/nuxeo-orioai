@@ -1,0 +1,8 @@
+## Edit this file to customize your configuration ##
+#orioai.target=
+
+# Set list of templates to include, comma separated values.
+nuxeo.template.includes=default
+
+orioai.workflow.url=http://localhost:8081/ori-oai-workflow
+orioai.editor.url=http://localhost:8081/ori-oai-md-editor

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<component name="">
+  <require>org.orioai.esupecm.workflow.wsdlOriOaiWorkflow</require>
+
+  <extension target="org.orioai.esupecm.workflow.service.OriOaiWorkflowService" point="wsUrl">
+    <configuration>
+        <wsUrl>${orioai.workflow.url}/xfire/OriWorkflowService</wsUrl>
+        <mdEditorFromUrl>${orioai.editor.url}</mdEditorFromUrl>
+      <mdEditorToUrl></mdEditorToUrl>
+    </configuration>
+  </extension>
+</component>

@@ -12,12 +12,14 @@
   <groupId>org.orioai</groupId>
   <artifactId>nuxeo-supeduc-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>SupEduc Nuxeo project</name>
+  <name>Nuxeo ORI-OAI - Parent</name>
   <packaging>pom</packaging>
 
   <properties>
     <nuxeo.version>5.6</nuxeo.version>
+    <orioai.version>1.7.1-SNAPSHOT</orioai.version>
     <orioai.commons.version>1.7.0-RC1</orioai.commons.version>
+
     <xfire.version>1.2.6</xfire.version>
     <wsdl4j.version>1.5.2</wsdl4j.version>
     <truezip.version>6.8.4</truezip.version>
@@ -27,8 +29,23 @@
     <module>esupecm-orioai</module>
   </modules>
 
+
+  <profiles>
+      <profile>
+          <id>marketplace</id>
+          <modules>
+              <module>orioai-marketplace</module>
+          </modules>
+      </profile>
+  </profiles>
+
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>org.orioai</groupId>
+        <artifactId>esupecm-orioai</artifactId>
+        <version>${orioai.version}</version>
+      </dependency>
       <dependency>
         <groupId>org.orioai</groupId>
         <artifactId>org.orioai.commons</artifactId>

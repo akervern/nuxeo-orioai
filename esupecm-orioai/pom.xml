@@ -10,8 +10,8 @@
   </parent>
 
   <artifactId>esupecm-orioai</artifactId>
-  <version>1.7.0</version>
-  <name>ORI-OAI-nuxeo project</name>
+  <version>1.7.1-SNAPSHOT</version>
+  <name>Nuxeo ORI-OAI - Connector</name>
   <description>ORI-OAI-nuxeo project</description>
 
   <dependencies>
