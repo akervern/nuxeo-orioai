@@ -18,7 +18,7 @@
   <properties>
     <nuxeo.version>5.6</nuxeo.version>
     <orioai.version>1.7.1-SNAPSHOT</orioai.version>
-    <orioai.commons.version>1.7.0-RC1</orioai.commons.version>
+    <orioai.commons.version>2.0.0-alpha50-SNAPSHOT</orioai.commons.version>
 
     <xfire.version>1.2.6</xfire.version>
     <wsdl4j.version>1.5.2</wsdl4j.version>
@@ -48,7 +48,7 @@
       </dependency>
       <dependency>
         <groupId>org.orioai</groupId>
-        <artifactId>org.orioai.commons</artifactId>
+        <artifactId>orioai-commons</artifactId>
         <version>${orioai.commons.version}</version>
       </dependency>
       <dependency>
