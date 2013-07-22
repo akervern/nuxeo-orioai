@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,6 +18,7 @@ import org.nuxeo.runtime.model.DefaultComponent;
 import org.orioai.esupecm.OriOaiMetadataType;
 import org.orioai.esupecm.workflow.WsDescriptor;
 import org.orioai.ws.workflow.IOriWorkflowService;
+import org.orioai.ws.workflow.InstanceInfos;
 
 public class OriOaiWorkflowServiceImpl extends DefaultComponent implements OriOaiWorkflowService {
 
@@ -121,7 +123,10 @@ public class OriOaiWorkflowServiceImpl extends DefaultComponent implements OriOa
 
 	
 
-	
+	/**
+	 * @deprecated
+	 * use Vector<String> getCurrentStates(Map<String, String> statesMap) instead
+	 */
 	public Map<String, String> getCurrentStates(String username, String idp, String language) {
 		IOriWorkflowService oriWorkflowService = getRemoteOriWorkflowService(username);
 		
@@ -132,6 +137,18 @@ public class OriOaiWorkflowServiceImpl extends DefaultComponent implements OriOa
 		return currentStates;
 	}
 	
+	public Vector<String> getCurrentStates(Map<String, String> statesMap) {
+		Vector<String> currentStates = new Vector<String>();
+		for (String key : statesMap.keySet())
+			currentStates.add(statesMap.get(key));
+		
+		return currentStates;
+	}
+	
+	/**
+	 * @deprecated
+	 * use List<String> getCurrentInformations(Map<String, String> currentInformations) instead
+	 */
 	public List<String> getCurrentInformations(String username, String idp, String language) {
 		
 		IOriWorkflowService oriWorkflowService = getRemoteOriWorkflowService(username);
@@ -142,6 +159,21 @@ public class OriOaiWorkflowServiceImpl extends DefaultComponent implements OriOa
 		}
 		
 		Map<String, String> currentInformations = oriWorkflowService.getErrors(idp, language);
+		if (log.isDebugEnabled())
+			log.debug("getCurrentInformations :: currentInformations=" + currentInformations);
+		
+		List<String> informations = new ArrayList<String>();
+
+		for (Map.Entry<String, String> entry : currentInformations.entrySet()) {
+			if (entry.getKey() != null) {
+				informations.add(entry.getValue());
+			}
+		}
+
+		return informations;
+	}
+	
+	public List<String> getCurrentInformations(Map<String, String> currentInformations) {
 		if (log.isDebugEnabled())
 			log.debug("getCurrentInformations :: currentInformations=" + currentInformations);
 		
@@ -339,5 +371,10 @@ public class OriOaiWorkflowServiceImpl extends DefaultComponent implements OriOa
 		IOriWorkflowService oriWorkflowService = getRemoteOriWorkflowService(username);
 		
 		oriWorkflowService.saveXML(idp, xmlContent);
+	}
+	
+	public InstanceInfos getInstanceInfos(Long id, String userId, String language) {
+		IOriWorkflowService oriWorkflowService = getRemoteOriWorkflowService(userId);
+		return oriWorkflowService.getInstanceInfos(id, userId, language);
 	}
 }

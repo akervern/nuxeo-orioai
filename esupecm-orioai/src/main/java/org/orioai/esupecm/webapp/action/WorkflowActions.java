@@ -45,6 +45,7 @@ import org.orioai.esupecm.workflow.ActionInfo;
 import org.orioai.esupecm.workflow.EditorInfo;
 import org.orioai.esupecm.workflow.OriOaiDocumentInfo;
 import org.orioai.esupecm.workflow.service.OriOaiWorkflowService;
+import org.orioai.ws.workflow.InstanceInfos;
 
 /**
  * This Seam bean manages the referencing tab in ORI-OAI Esup-ECM. TODO : add
@@ -248,7 +249,7 @@ public class WorkflowActions implements Serializable {
 	 * @throws ClientException
 	 *             Note : store current idps to avoid time consuming WS requests
 	 */
-	public List<OriOaiDocumentInfo> fetchOriInfos(DocumentModel currentDoc,
+	public List<OriOaiDocumentInfo> fetchOriInfosOld(DocumentModel currentDoc,
 			List<String> oriIdProp) throws ClientException {
 
 		// Set the ori infos list
@@ -340,6 +341,90 @@ public class WorkflowActions implements Serializable {
 		}
 		else {
 			log.warn("fetchOriInfos :: list of ORI ID is NULL");
+		}
+		return oriInfos;
+	}
+
+	
+	protected OriOaiDocumentInfo  getDocumentInfo(InstanceInfos infos){
+		OriOaiDocumentInfo newOriInfo = null;
+		OriOaiMetadataType metadataType = null;
+		List<String> states = null;
+		List<String> informations = null;
+		List<EditorInfo> mdEditorUrls = null;
+		List<ActionInfo> actions = null;
+		// the metadata type for this idp
+		metadataType = new OriOaiMetadataType(infos.getMetadataType(), infos.getMetadataTypeLabel());
+		states = oriOaiWorkflowService.getCurrentStates(infos.getStatesMap());
+		informations = oriOaiWorkflowService.getCurrentInformations(infos.getCurrentInformations());
+		// the md editors to edit this XML medatata content
+		mdEditorUrls = getMdEditorInfos(infos.getMdEditorUrlsMap());
+		actions = getActions(infos.getActionsMap());
+		newOriInfo = new OriOaiDocumentInfo(infos.getOriId(),
+					metadataType, states, infos.getIdp(), mdEditorUrls, actions, informations);
+		
+		return newOriInfo;
+		
+		
+}
+	
+	/**
+	 * Fetch infos from workflow WS for each ori ID related to a given document
+	 * 
+	 * @param currentDoc
+	 *            a DocumentModel
+	 * @param oriIdProp
+	 *            a list of ORI ids
+	 * @return
+	 * @throws ClientException
+	 *             Note : store current idps to avoid time consuming WS requests
+	 */
+	public List<OriOaiDocumentInfo> fetchOriInfos(DocumentModel currentDoc,
+			List<String> oriIdProp) throws ClientException {
+
+		// Set the ori infos list
+		List<OriOaiDocumentInfo> oriInfos = new ArrayList<OriOaiDocumentInfo>();
+
+		// the ori-oai-workflow service
+		OriOaiWorkflowService oriOaiWorkflowService = getOriOaiWorkflowService();
+		if (oriIdProp == null){
+			log.warn("fetchOriInfos :: list of ORI ID is NULL");
+		}else if(oriOaiWorkflowService == null){
+			log.warn("fetchOriInfos :: Workflow Web Service is NULL : ori infos unavailable");
+		}else{
+			for (String oriIdString : oriIdProp) {
+				// the ori id
+				Long oriId = Long.parseLong(oriIdString);
+				String language = FacesContext.getCurrentInstance().getViewRoot().getLocale().getLanguage();
+				InstanceInfos infos = oriOaiWorkflowService.getInstanceInfos(oriId, currentUser.getName(), language);
+				
+				boolean deletableRelation = infos != null;
+				if (infos != null) {
+					OriOaiDocumentInfo newOriInfo = getDocumentInfo(infos);
+					newOriInfo.setProxyTitle(currentDoc.getTitle());
+					DocumentRef parentRef = currentDoc.getParentRef();
+					DocumentModel section = documentManager.getDocument(parentRef);
+					newOriInfo.setSectionTitle(section.getTitle());
+					newOriInfo.setDeletableRelation(deletableRelation);
+					// add info
+					oriInfos.add(newOriInfo);	
+				}else {
+					log.warn("fetchOriInfos :: instanceInfos is null for ORI ID " + oriId);
+				}
+				if(deletableRelation){
+
+					log.warn("fetchOriInfos :: delete relation for ORI ID " + oriId);
+					try {
+						referencingManager.deleteOriRelation(oriId, currentDoc);
+						Object[] params = new Object[2];
+						params[0] = versioningManager.getVersionLabel(currentDoc);
+						facesMessages.add(FacesMessage.SEVERITY_WARN, resourcesAccessor.getMessages().get("oriref.error.relation.deleted"), params);
+					}
+					catch(Exception e) {
+						log.error("fetchOriInfos :: can't delete relation for ORI ID " + oriId, e);
+					}
+				}
+			}	
 		}
 		return oriInfos;
 	}

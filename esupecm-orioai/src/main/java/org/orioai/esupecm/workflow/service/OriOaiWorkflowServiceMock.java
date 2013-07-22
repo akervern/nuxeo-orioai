@@ -9,6 +9,7 @@ import org.nuxeo.runtime.model.ComponentInstance;
 import org.nuxeo.runtime.model.DefaultComponent;
 import org.orioai.esupecm.OriOaiMetadataType;
 import org.orioai.esupecm.workflow.WsDescriptor;
+import org.orioai.ws.workflow.InstanceInfos;
 
 public class OriOaiWorkflowServiceMock extends DefaultComponent implements
 	OriOaiWorkflowService {
@@ -140,6 +141,26 @@ public class OriOaiWorkflowServiceMock extends DefaultComponent implements
 	public boolean performAction(String username, String idp, int actionId, String observation) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+	public InstanceInfos getInstanceInfos(Long id, String userId,
+			String language) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public List<String> getCurrentInformations(
+			Map<String, String> currentInformations) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public List<String> getCurrentStates(Map<String, String> statesMap) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

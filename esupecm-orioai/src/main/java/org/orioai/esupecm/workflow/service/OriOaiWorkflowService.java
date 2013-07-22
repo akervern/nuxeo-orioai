@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.orioai.esupecm.OriOaiMetadataType;
+import org.orioai.ws.workflow.InstanceInfos;
 
 public interface OriOaiWorkflowService {
 
@@ -39,5 +40,12 @@ public interface OriOaiWorkflowService {
 	 * @return true if action was performed
 	 */
 	public boolean performAction(String username, String idp, int actionId, String observation);
+	
+	public InstanceInfos getInstanceInfos(Long id, String userId, String language);
 
+	public List<String> getCurrentInformations(
+			Map<String, String> currentInformations);
+
+	public List<String> getCurrentStates(Map<String, String> statesMap);
+		
 }
