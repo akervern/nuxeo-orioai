@@ -48,6 +48,12 @@
         <groupId>org.orioai</groupId>
         <artifactId>orioai-commons</artifactId>
         <version>${orioai.commons.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.codehaus.xfire</groupId>

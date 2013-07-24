@@ -1,31 +1,34 @@
 package org.orioai.esupecm.workflow;
+
+import static org.junit.Assert.assertNotNull;
+
 import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.nuxeo.ecm.core.test.DefaultRepositoryInit;
+import org.nuxeo.ecm.core.test.annotations.RepositoryConfig;
+import org.nuxeo.ecm.platform.test.PlatformFeature;
 import org.nuxeo.runtime.api.Framework;
-import org.nuxeo.runtime.test.NXRuntimeTestCase;
+import org.nuxeo.runtime.test.runner.Deploy;
+import org.nuxeo.runtime.test.runner.Features;
+import org.nuxeo.runtime.test.runner.FeaturesRunner;
 import org.orioai.esupecm.OriOaiMetadataType;
 import org.orioai.esupecm.workflow.service.OriOaiWorkflowService;
 
-import static org.junit.Assert.assertNotNull;
+import com.google.inject.Inject;
 
+@RunWith(FeaturesRunner.class)
+@Features({ PlatformFeature.class })
+@RepositoryConfig(init = DefaultRepositoryInit.class)
+@Deploy({ TestOriOaiWorkflowService.OSGI_BUNDLE_NAME })
+public class TestOriOaiWorkflowService {
 
-public class TestOriOaiWorkflowService extends NXRuntimeTestCase {
+    @Inject
+    private OriOaiWorkflowService service;
 
-	private OriOaiWorkflowService service;
-	 
-    private static final String OSGI_BUNDLE_NAME = "org.orioai.nuxeo.workflow";
-
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-        
-        // deployment of the whole ori-oai-nuxeo-project bundle
-        deployBundle(OSGI_BUNDLE_NAME);
-
-        service = Framework.getService(OriOaiWorkflowService.class);
-    }
+    static final String OSGI_BUNDLE_NAME = "org.orioai.nuxeo.workflow";
 
     @Test
     public void testServiceRegistration() throws Exception {
@@ -34,10 +37,11 @@ public class TestOriOaiWorkflowService extends NXRuntimeTestCase {
 
     @Test
     @Ignore
-    public void testGetMetadataTypes() throws Exception {     
-    	List<OriOaiMetadataType> metadataTypes = service.getMetadataTypes("admin");
-        assertNotNull("metadataTypes obtained from OriOaiWorkflowService is null ??", metadataTypes);
+    public void testGetMetadataTypes() throws Exception {
+        List<OriOaiMetadataType> metadataTypes = service.getMetadataTypes("admin");
+        assertNotNull(
+                "metadataTypes obtained from OriOaiWorkflowService is null ??",
+                metadataTypes);
     }
 
 }
-
