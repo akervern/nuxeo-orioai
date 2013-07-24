@@ -59,7 +59,7 @@
           <artifact groupId="org.nuxeo*" scope="!test" type="!pom" />
           <!-- Include your artifacts using their groupId for instance -->
           <artifact groupId="com.nuxeo*" scope="!test" type="!pom" />
-          <artifact groupId="org.orioai*" scope="!test" type="!pom" />
+          <artifact groupId="org.orioai" artifactId="esupecm-orioai" />
         </includes>
       </artifact:set>
     </copy>
@@ -72,6 +72,8 @@
         <excludes>
           <!-- Filter out your artifacts using their groupId for instance -->
           <artifact groupId="com.nuxeo*" />
+          <artifact groupId="org.orioai" artifactId="esupecm-orioai" />
+          <artifact groupId="com.sun.xml.bind" artifactId="jaxb-xjc" />
         </excludes>
       </artifact:set>
     </copy>
@@ -91,6 +93,8 @@
                 file2="${outdir}/nuxeo-distribution-cap-${nuxeo.distribution.version}.zip"
                 includesfile="${outdir}/includes"
                 excludesfile="${outdir}/excludesfile"
+                ignoreContent="true"
+                ignoreContentPattern=".*SNAPSHOT\\.jar$"
                 patternsetid="sample.versus.cap">
     </nx:zipdiff>
     <unzip src="${outdir}/nxr-${marketplace.sample.version}.zip"

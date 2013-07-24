@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.nuxeo.ecm.distribution</groupId>
     <artifactId>nuxeo-distribution</artifactId>
-    <version>5.6</version>
+    <version>5.7.2-SNAPSHOT</version>
   </parent>
 
   <groupId>org.orioai</groupId>
@@ -15,6 +15,7 @@
 
   <properties>
     <marketplace.sample.version>1.0-SNAPSHOT</marketplace.sample.version>
+    <nuxeo.version>5.7.2-SNAPSHOT</nuxeo.version>
   </properties>
 
   <modules>
@@ -26,15 +27,14 @@
       <dependency>
         <groupId>org.orioai</groupId>
         <artifactId>nuxeo-supeduc-parent</artifactId>
-        <version>${marketplace.sample.version}</version>
+        <version>${nuxeo.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.orioai</groupId>
         <artifactId>esupecm-orioai</artifactId>
-        <version>${marketplace.sample.version}</version>
-        <type>zip</type>
+        <version>${nuxeo.version}</version>
       </dependency>
       <dependency>
         <groupId>org.orioai</groupId>

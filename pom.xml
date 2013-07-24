@@ -17,7 +17,7 @@
   <properties>
     <nuxeo.version>5.7.2-SNAPSHOT</nuxeo.version>
     <orioai.version>1.7.1-SNAPSHOT</orioai.version>
-    <orioai.commons.version>2.0.0-alpha50-SNAPSHOT</orioai.commons.version>
+    <orioai.commons.version>2.0.0-sup-e-educ-profile-alpha57-SNAPSHOT</orioai.commons.version>
 
     <xfire.version>1.2.6</xfire.version>
     <wsdl4j.version>1.5.2</wsdl4j.version>
@@ -41,17 +41,36 @@
     <dependencies>
       <dependency>
         <groupId>org.orioai</groupId>
-        <artifactId>esupecm-orioai</artifactId>
-        <version>${orioai.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.orioai</groupId>
         <artifactId>orioai-commons</artifactId>
         <version>${orioai.commons.version}</version>
         <exclusions>
           <exclusion>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-io</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.esupportail</groupId>
+            <artifactId>esup-commons2-rs-cxf</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging-api</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.restlet.jee</groupId>
+            <artifactId>org.restlet</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.restlet.jee</groupId>
+            <artifactId>org.restlet.ext.xstream</artifactId>
           </exclusion>
         </exclusions>
       </dependency>

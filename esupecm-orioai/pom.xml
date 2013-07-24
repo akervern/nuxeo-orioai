@@ -7,6 +7,7 @@
     <groupId>org.orioai</groupId>
     <artifactId>nuxeo-supeduc-parent</artifactId>
     <version>5.7.2-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>esupecm-orioai</artifactId>
