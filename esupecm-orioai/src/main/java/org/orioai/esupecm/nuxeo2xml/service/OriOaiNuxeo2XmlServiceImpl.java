@@ -609,5 +609,8 @@ public class OriOaiNuxeo2XmlServiceImpl extends DefaultComponent implements OriO
 		}
 	}
 
-
+    @Override
+    public String getLastVersionUrl() {
+        return nuxeoUrlConfig.getDocumentUrl();
+    }
 }
