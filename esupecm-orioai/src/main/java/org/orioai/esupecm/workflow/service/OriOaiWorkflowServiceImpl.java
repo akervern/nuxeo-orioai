@@ -63,7 +63,7 @@ public class OriOaiWorkflowServiceImpl extends DefaultComponent implements OriOa
 			log.info("getRemoteOriWorkflowService :: contacting Web Service from URL : " + wsUrl);
 
 			try {
-                QName service_name = new QName("http://remote.services.workflow.orioai.org", "OriWorkflowServiceService");
+                QName service_name = new QName("http://remote.services.workflow.orioai.org/", "OriWorkflowServiceService");
                 Service service = Service.create(new URL(wsUrl + "?wsdl"), service_name);
 				oriWorkflowService = service.getPort(IOriWorkflowService.class);
 				_oriWorkflowServices.put(username, oriWorkflowService);
