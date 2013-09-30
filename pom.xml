@@ -19,7 +19,6 @@
     <orioai.version>1.7.1-SNAPSHOT</orioai.version>
     <orioai.commons.version>2.0.0-sup-e-educ-profile-alpha57-SNAPSHOT</orioai.commons.version>
 
-    <xfire.version>1.2.6</xfire.version>
     <wsdl4j.version>1.5.2</wsdl4j.version>
     <truezip.version>6.8.4</truezip.version>
   </properties>
@@ -73,11 +72,6 @@
             <artifactId>org.restlet.ext.xstream</artifactId>
           </exclusion>
         </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>org.codehaus.xfire</groupId>
-        <artifactId>xfire-all</artifactId>
-        <version>${xfire.version}</version>
       </dependency>
       <dependency>
         <groupId>de.schlichtherle</groupId>
