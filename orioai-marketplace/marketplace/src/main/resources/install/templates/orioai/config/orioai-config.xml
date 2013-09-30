@@ -4,8 +4,8 @@
 
   <extension target="org.orioai.esupecm.workflow.service.OriOaiWorkflowService" point="wsUrl">
     <configuration>
-        <wsUrl>${orioai.workflow.url}/xfire/OriWorkflowService</wsUrl>
-        <mdEditorFromUrl>${orioai.editor.url}</mdEditorFromUrl>
+      <wsUrl>${orioai.workflow.url}/cxf/OriWorkflowService</wsUrl>
+      <mdEditorFromUrl>${orioai.editor.url}</mdEditorFromUrl>
       <mdEditorToUrl></mdEditorToUrl>
     </configuration>
   </extension>
