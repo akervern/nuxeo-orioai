@@ -65,7 +65,7 @@ import org.nuxeo.runtime.api.Framework;
  * MODIFIED FOR ORIOAI_nuxeo :
  * Light adaptations : addStatement and getOutgoingStatementsInfo with a Document as parameter
  * (because original implementation use currentDoc)
- * 
+ *
  *  Seam component that manages statements involving current document as well as
  * creation, edition and deletion of statements involving current document.
  * <p>
@@ -230,7 +230,7 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
    	 DocumentModel currentDoc = navigationContext.getCurrentDocument();
    	 return getOutgoingStatementsInfo(currentDoc);
    }
-   
+
    /**
 	 * Return outgoing relations for a given DocumentModel
 	 * Same as super.getOutgoingStatementsInfo(), except for document argument
@@ -240,16 +240,16 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
 	 * @throws ClientException
 	 */
 	public List<StatementInfo> getOutgoingStatementsInfo(DocumentModel currentDoc) throws ClientException {
-		
+
 		if (log.isDebugEnabled())
 			log.debug("getOutgoingStatementsInfo :: currentDoc="+currentDoc);
-   
-		
-		
+
+
+
         if (outgoingStatementsInfo != null) {
             return outgoingStatementsInfo;
         }
-       
+
         Resource docResource = getDocumentResource(currentDoc);
         if (docResource == null) {
             outgoingStatements = Collections.emptyList();
@@ -258,11 +258,7 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
             Statement pattern = new StatementImpl(docResource, null, null);
             outgoingStatements = relationManager.getStatements(
                     RelationConstants.GRAPH_NAME, pattern);
-            // add old statements, BBB
-            Resource oldDocResource = getOldDocumentResource(currentDoc);
-            Statement oldPattern = new StatementImpl(oldDocResource, null, null);
-            outgoingStatements.addAll(relationManager.getStatements(
-                    RelationConstants.GRAPH_NAME, oldPattern));
+
             outgoingStatementsInfo = getStatementsInfo(outgoingStatements);
             // sort by modification date, reverse
             Comparator<StatementInfo> comp = Collections.reverseOrder(new StatementInfoComparator());
@@ -270,10 +266,10 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
         }
         return outgoingStatementsInfo;
     }
-	
-	
-	
-	
+
+
+
+
 
     public void resetStatements() {
         incomingStatements = null;
@@ -369,7 +365,7 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
     	DocumentModel currentDoc = navigationContext.getCurrentDocument();
     	return addStatement(currentDoc);
     }
-    
+
     //MODIFORI
     public String addStatement(DocumentModel currentDoc) throws ClientException {
         Resource documentResource = getDocumentResource(currentDoc);
@@ -398,7 +394,7 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
         if (outgoingStatements==null) {
         	getOutgoingStatementsInfo(currentDoc);
         }
-        
+
         // create new statement
         Statement stmt = new StatementImpl(documentResource, predicate, object);
         if (!outgoingStatements.contains(stmt)) {
@@ -534,13 +530,13 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
         }
         return "document_relations";
     }
-    
-    
+
+
     public String deleteStatement(StatementInfo stmtInfo) throws ClientException {
     	return deleteStatement(stmtInfo, getCurrentDocument());
     }
-    
-    
+
+
 
     public String getSearchKeywords() {
         return searchKeywords;
@@ -553,7 +549,7 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
     public String searchDocuments() throws ClientException {
     	if (log.isDebugEnabled())
 			log.debug("Making call to get documents list for keywords: " + searchKeywords);
-    	
+
         // reset existing search results
         resultDocuments = null;
         List<String> constraints = new ArrayList<String>();
@@ -581,16 +577,16 @@ public class CustomRelationActions extends DocumentContextBoundActionBean
         // search keywords
         String query = String.format("SELECT * FROM Document WHERE %s",
                 StringUtils.join(constraints.toArray(), " AND "));
-        
+
         if (log.isDebugEnabled())
 			log.debug("query: " + query);
-        
+
         resultDocuments = documentManager.query(query, 100);
         hasSearchResults = !resultDocuments.isEmpty();
-        
+
         if (log.isDebugEnabled())
         	log.debug("query result contains: " + resultDocuments.size() + " docs.");
-        
+
         return "create_relation_search_document";
     }
 

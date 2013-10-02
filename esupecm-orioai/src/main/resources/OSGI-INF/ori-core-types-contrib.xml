@@ -11,7 +11,7 @@
 
   <extension target="org.nuxeo.ecm.core.schema.TypeService"
     point="doctype">
-    
+
     <doctype name="File" extends="Document">
         <schema name="common"/>
         <schema name="file"/>
@@ -25,6 +25,8 @@
         <facet name="Commentable"/>
         <facet name="HasRelatedText"/>
     </doctype>
+
+    <facet name="ORI_READ_ONLY" />
 
   </extension>
 </component>

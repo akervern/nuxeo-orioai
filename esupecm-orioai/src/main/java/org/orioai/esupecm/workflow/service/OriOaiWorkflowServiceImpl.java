@@ -11,6 +11,7 @@ import java.util.Vector;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
+import javax.xml.ws.soap.SOAPFaultException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -376,6 +377,13 @@ public class OriOaiWorkflowServiceImpl extends DefaultComponent implements OriOa
 
 	public InstanceInfos getInstanceInfos(Long id, String userId, String language) {
 		IOriWorkflowService oriWorkflowService = getRemoteOriWorkflowService(userId);
-		return oriWorkflowService.getInstanceInfos(id, userId, language);
+        try {
+		    return oriWorkflowService.getInstanceInfos(id, userId, language);
+        }
+        catch (SOAPFaultException se) {
+            log.warn(se.getMessage() + " For id " + id);
+            log.debug(se, se);
+            return null;
+        }
 	}
 }

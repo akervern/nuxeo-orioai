@@ -69,6 +69,8 @@ public class WorkflowActions implements Serializable {
 
     protected static final String INIT_ORIWORKFLOW = "INIT_ORIWORKFLOW";
 
+    protected static final String ORI_READ_ONLY = "ORI_READ_ONLY";
+
     @PrePassivate
     public void prePassivate() {
         log.debug("prePassivate :: ");
@@ -394,7 +396,7 @@ public class WorkflowActions implements Serializable {
                 InstanceInfos infos = oriOaiWorkflowService.getInstanceInfos(
                         oriId, currentUser.getName(), language);
 
-                boolean deletableRelation = infos != null;
+                boolean deletableRelation = false; //infos != null;
                 if (infos != null) {
                     OriOaiDocumentInfo newOriInfo = getDocumentInfo(infos);
                     newOriInfo.setProxyTitle(currentDoc.getTitle());
@@ -926,6 +928,10 @@ public class WorkflowActions implements Serializable {
 
     public List<OriOaiMetadataType> getReferencableMetadataTypes(
             DocumentModel versionDoc) throws ClientException {
+        if (versionDoc.hasFacet(ORI_READ_ONLY)) {
+            return Collections.emptyList();
+        }
+
         // build availables metadata types model
         log.debug("getReferencableMetadataTypes :: ");
         List<OriOaiDocumentInfo> selectedProxyOriInfos = getVersionOriInfos(versionDoc);

@@ -173,23 +173,25 @@
 
               <!-- edit -->
               <nxu:column>
-                <f:facet name="header">
-                  <h:outputText value="#{messages['oriref.label.editors']}"/>
-                </f:facet>
-                <nxu:dataList rendered="#{oriinfo.mdeditorUrls != null}"
-                  layout="none" var="mdUrl" value="#{oriinfo.mdeditorUrls}"
-                  rowIndexVar="rowUrlindex" rowCountVar="rowCountUrl">
+                <c:if test="${!currentDocument.hasFacet('ORI_READ_ONLY')}">
+                  <f:facet name="header">
+                    <h:outputText value="#{messages['oriref.label.editors']}"/>
+                  </f:facet>
+                  <nxu:dataList rendered="#{oriinfo.mdeditorUrls != null}"
+                    layout="none" var="mdUrl" value="#{oriinfo.mdeditorUrls}"
+                    rowIndexVar="rowUrlindex" rowCountVar="rowCountUrl">
 
-                  <h:form id="editorform">
-                    <nxh:commandLink
-                      styleClass="button" type="submit"
-                      action="#{oriManager.processCallEditor(oriinfo.idp, oriinfo.oriId, versionRefItem.versionDoc, mdUrl)}"
-                      value="#{mdUrl.title}"/>
-                  </h:form>
+                    <h:form id="editorform">
+                      <nxh:commandLink
+                        styleClass="button" type="submit"
+                        action="#{oriManager.processCallEditor(oriinfo.idp, oriinfo.oriId, versionRefItem.versionDoc, mdUrl)}"
+                        value="#{mdUrl.title}"/>
+                    </h:form>
 
-                </nxu:dataList>
-                <h:outputText rendered="#{oriinfo.mdeditorUrls == null}"
-                  value="#{messages['oriref.status.nomdeditorurls.available']}"/>
+                  </nxu:dataList>
+                  <h:outputText rendered="#{oriinfo.mdeditorUrls == null}"
+                    value="#{messages['oriref.status.nomdeditorurls.available']}"/>
+                </c:if>
               </nxu:column>
 
 
