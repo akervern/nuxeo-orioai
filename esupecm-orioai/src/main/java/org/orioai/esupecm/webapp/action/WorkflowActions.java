@@ -61,7 +61,7 @@ import org.orioai.ws.workflow.InstanceInfos;
 @Transactional
 public class WorkflowActions implements Serializable {
 
-    private boolean useCache = true;
+    private boolean useCache = false;
 
     private static final long serialVersionUID = 1L;
 
