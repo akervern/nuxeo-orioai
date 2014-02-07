@@ -16,7 +16,7 @@
   </platforms>
   <!-- Dependencies on other packages -->
   <dependencies>
-    <package>nuxeo-dm:5.6.0</package> -->
+    <package>nuxeo-dm:@DISTRIB_VERSION@.0</package> -->
   </dependencies>
   <!-- Conflicts with other packages -->
   <!-- <conflicts> -->
