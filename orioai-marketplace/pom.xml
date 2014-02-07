@@ -11,10 +11,10 @@
   <artifactId>parent</artifactId>
   <packaging>pom</packaging>
   <name>Nuxeo ORI-OAI - Marketplace packaging parent</name>
-  <version>1.0</version>
+  <version>1.1-SNAPSHOT</version>
 
   <properties>
-    <marketplace.sample.version>1.0</marketplace.sample.version>
+    <marketplace.sample.version>1.1-SNAPSHOT</marketplace.sample.version>
     <nuxeo.version>5.8</nuxeo.version>
   </properties>
 
